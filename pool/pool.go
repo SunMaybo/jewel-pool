@@ -1,4 +1,4 @@
-package amqp
+package pool
 
 import (
 	"github.com/streadway/amqp"
@@ -33,7 +33,7 @@ type ChannelConfirm struct {
 	ChannelId int32
 }
 
-func New(config Config) *RabbitConnections {
+func NewAmqp(config Config) *RabbitConnections {
 	config = defaultConfig(config)
 	return &RabbitConnections{
 		Config:         config,

@@ -1,4 +1,4 @@
-package amqp
+package pool
 
 import (
 	"github.com/streadway/amqp"
@@ -194,8 +194,9 @@ func (connect *Connection) createChannel() (*Channel, error) {
 		ch.Confirm(*connect.confirm)
 		channelConfirm := make(chan amqp.Confirmation)
 		channelConfirm = ch.NotifyPublish(channelConfirm)
-		connect.confirmFunc(ch, channelConfirm)
-
+		go func() {
+			connect.confirmFunc(ch, channelConfirm)
+		}()
 	}
 	return ch, nil
 }
