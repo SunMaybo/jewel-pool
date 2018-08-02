@@ -1,6 +1,6 @@
 ﻿# jewel-pool
 ## amqp 连接池
-​### 解决问题
+### 解决问题
 1. 对channel进行管理，减少由于open，close所带来的不必要的开销
 2. 对connection进行管理，减少由于open，close所带来的不必要的开销
 3. 确认模式的回调机制实现。
@@ -79,7 +79,7 @@ q, _ := ch.QueueDeclare(
 ### 性能测试
 #### 基础环境
 
-*机器环境**
+**机器环境**
 
 ```
 型号标识符：   MacBookPro14,2
@@ -92,7 +92,7 @@ L3 缓存：    4 MB
 内存：    8 GB
 ```
 
-*docker版本**
+**docker版本**
 
 ```
 Client:
@@ -117,7 +117,7 @@ Experimental: true
 
 ```
 
-*rabbitmq版本**
+**rabbitmq版本**
 
 ```
 daocloud.io/rabbitmq:3-management
@@ -137,7 +137,7 @@ daocloud.io/rabbitmq:3-management
 > 1. 连接池对连接和管道进行管理，数发送采用异步发送,程序异常情况下，多管道会造成更多数据丢失。
 > 2. 网络抖动情况下，造成数据丢失。
 
-*解决方案**
+**解决方案**
 
 1. 确认模式发送，通过缓存发送数据，超时时间发送未确认数据，并且采幂等发送解决数据多次发送问题。
 #### 数据消费
