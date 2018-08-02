@@ -11,9 +11,8 @@ import (
 func main() {
 	pool := pool.NewAmqp(pool.Config{
 		Config:         amqp2.Config{ChannelMax: 20},
-		Url:            "pool://guest:guest@127.0.0.1:5672",
+		Url:            "amqp://guest:guest@127.0.0.1:5672",
 		Max_Open_Conns: 5,
-		Max_Idle_Conns: 2,
 	})
 	confirmCount := new(int32)
 	pool.Confirm(false)
@@ -54,4 +53,7 @@ func main() {
 		}()
 	}
 	select {}
+}
+func rest() {
+
 }
